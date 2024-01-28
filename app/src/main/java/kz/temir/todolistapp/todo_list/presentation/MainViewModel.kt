@@ -8,8 +8,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import kz.temir.todolistapp.todo_list.data.TodoDao
-import kz.temir.todolistapp.todo_list.data.TodoTable
-import java.util.UUID
+import kz.temir.todolistapp.todo_list.presentation.models.Todo
 import javax.inject.Inject
 
 @HiltViewModel
@@ -31,19 +30,6 @@ class MainViewModel @Inject constructor(
                     }
                 )
             }
-        }
-    }
-
-    fun addTodo() {
-        viewModelScope.launch(Dispatchers.IO) {
-            todoDao.insert(
-                TodoTable(
-                    id = UUID.randomUUID().toString(),
-                    title = UUID.randomUUID().toString(),
-                    description = UUID.randomUUID().toString() + "::::" + UUID.randomUUID()
-                        .toString(),
-                )
-            )
         }
     }
 }

@@ -42,6 +42,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="Name"
+        app:counterEnabled="true"
+        app:counterMaxLength="20"
         app:layout_constraintEnd_toEndOf="@id/end_gl"
         app:layout_constraintStart_toStartOf="@id/start_gl"
         app:layout_constraintTop_toBottomOf="@id/top_bar">
@@ -51,14 +53,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:imeOptions="actionNext"
-            android:inputType="text"
-            android:maxLines="1" />
+            android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/description_til"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        app:counterEnabled="true"
+        app:counterMaxLength="200"
         android:layout_marginTop="8dp"
         android:hint="Description"
         app:layout_constraintEnd_toEndOf="@id/end_gl"
@@ -70,8 +73,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:imeOptions="actionDone"
-            android:inputType="text"
-            android:maxLines="5" />
+            android:inputType="textMultiLine"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton

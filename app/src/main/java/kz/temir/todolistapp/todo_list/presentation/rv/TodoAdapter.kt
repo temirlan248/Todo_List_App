@@ -4,9 +4,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kz.temir.todolistapp.databinding.ItemTodoBinding
-import kz.temir.todolistapp.todo_list.presentation.Todo
+import kz.temir.todolistapp.todo_list.presentation.models.Todo
 
-class TodoAdapter : RecyclerView.Adapter<TodoAdapter.TodoViewHolder>() {
+class TodoAdapter(
+    private val onItemClick: (Todo) -> Unit,
+) : RecyclerView.Adapter<TodoAdapter.TodoViewHolder>() {
 
     var todoItems: List<Todo> = mutableListOf()
         set(value) {
@@ -15,10 +17,13 @@ class TodoAdapter : RecyclerView.Adapter<TodoAdapter.TodoViewHolder>() {
         }
 
     class TodoViewHolder(
-        private val todoBinding: ItemTodoBinding
+        private val todoBinding: ItemTodoBinding,
     ) : RecyclerView.ViewHolder(todoBinding.root) {
-        fun bind(todo: Todo) {
+        fun bind(todo: Todo, onItemClick: (Todo) -> Unit) {
             with(todoBinding) {
+                root.setOnClickListener {
+                    onItemClick.invoke(todo)
+                }
                 titleTv.text = todo.title
                 descriptionTv.text = todo.description
             }
@@ -35,6 +40,6 @@ class TodoAdapter : RecyclerView.Adapter<TodoAdapter.TodoViewHolder>() {
 
     override fun onBindViewHolder(holder: TodoViewHolder, position: Int) {
         val item = todoItems[position]
-        holder.bind(item)
+        holder.bind(item, onItemClick)
     }
 }

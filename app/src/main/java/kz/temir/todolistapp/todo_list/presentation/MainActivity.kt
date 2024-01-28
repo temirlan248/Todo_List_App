@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import dagger.hilt.android.AndroidEntryPoint
 import kz.temir.todolistapp.databinding.ActivityMainBinding
+import kz.temir.todolistapp.todo.TodoActivity
 import kz.temir.todolistapp.todo_list.presentation.rv.TodoAdapter
 
 
@@ -19,7 +20,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        todoAdapter = TodoAdapter()
+        todoAdapter = TodoAdapter { todo ->
+            startActivity(TodoActivity.newInstance(this, todo.id, todo.title, todo.description))
+        }
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val dividerItemDecoration = DividerItemDecoration(
@@ -32,7 +35,7 @@ class MainActivity : AppCompatActivity() {
             todoAdapter.todoItems = todoItems
         }
         binding.fab.setOnClickListener {
-            viewModel.addTodo()
+            startActivity(TodoActivity.newInstance(this))
         }
     }
 }

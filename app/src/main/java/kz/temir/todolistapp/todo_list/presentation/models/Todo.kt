@@ -1,4 +1,4 @@
-package kz.temir.todolistapp.todo_list.presentation
+package kz.temir.todolistapp.todo_list.presentation.models
 
 data class Todo(
     val id: String,
