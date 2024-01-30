@@ -8,6 +8,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import kz.temir.todolistapp.todo_list.data.TodoDao
+import kz.temir.todolistapp.todo_list.data.TodoTable
 import kz.temir.todolistapp.todo_list.presentation.models.Todo
 import javax.inject.Inject
 
@@ -15,6 +16,18 @@ import javax.inject.Inject
 class MainViewModel @Inject constructor(
     private val todoDao: TodoDao,
 ) : ViewModel() {
+    fun deleteTodo(todo: Todo) {
+        viewModelScope.launch(Dispatchers.IO) {
+            todoDao.delete(
+                TodoTable(
+                    id = todo.id,
+                    title = todo.title,
+                    description = todo.description
+                )
+            )
+        }
+    }
+
     val todos = MutableLiveData<List<Todo>>()
 
     init {

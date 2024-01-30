@@ -8,6 +8,7 @@ import kz.temir.todolistapp.todo_list.presentation.models.Todo
 
 class TodoAdapter(
     private val onItemClick: (Todo) -> Unit,
+    private val onLongPress: (Todo) -> Unit,
 ) : RecyclerView.Adapter<TodoAdapter.TodoViewHolder>() {
 
     var todoItems: List<Todo> = mutableListOf()
@@ -19,10 +20,14 @@ class TodoAdapter(
     class TodoViewHolder(
         private val todoBinding: ItemTodoBinding,
     ) : RecyclerView.ViewHolder(todoBinding.root) {
-        fun bind(todo: Todo, onItemClick: (Todo) -> Unit) {
+        fun bind(todo: Todo, onItemClick: (Todo) -> Unit, onLongPress: (Todo) -> Unit) {
             with(todoBinding) {
                 root.setOnClickListener {
                     onItemClick.invoke(todo)
+                }
+                root.setOnLongClickListener {
+                    onLongPress.invoke(todo)
+                    true
                 }
                 titleTv.text = todo.title
                 descriptionTv.text = todo.description
@@ -40,6 +45,6 @@ class TodoAdapter(
 
     override fun onBindViewHolder(holder: TodoViewHolder, position: Int) {
         val item = todoItems[position]
-        holder.bind(item, onItemClick)
+        holder.bind(item, onItemClick, onLongPress)
     }
 }
