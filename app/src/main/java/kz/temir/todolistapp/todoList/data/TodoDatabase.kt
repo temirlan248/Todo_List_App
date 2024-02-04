@@ -1,4 +1,4 @@
-package kz.temir.todolistapp.todo_list.data
+package kz.temir.todolistapp.todoList.data
 
 import androidx.room.Database
 import androidx.room.RoomDatabase

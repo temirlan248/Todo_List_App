@@ -1,0 +1,5 @@
+[*.{kt,kts}]
+ktlint_code_style = android_studio
+disabled_rules = annotation, annotation-spacing, spacing-between-declarations-with-annotations
+ij_kotlin_allow_trailing_comma_on_call_site = true
+ij_kotlin_allow_trailing_comma = true

@@ -1,4 +1,4 @@
-package kz.temir.todolistapp.todo_list.data
+package kz.temir.todolistapp.todoList.data
 
 import androidx.room.Dao
 import androidx.room.Delete

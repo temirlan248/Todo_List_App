@@ -1,17 +1,18 @@
-package kz.temir.todolistapp.todo_list.presentation.rv
+package kz.temir.todolistapp.todoList.presentation.rv
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kz.temir.todolistapp.databinding.ItemTodoBinding
-import kz.temir.todolistapp.todo_list.presentation.models.Todo
+import kz.temir.todolistapp.todoList.presentation.models.Todo
 
 class TodoAdapter(
     private val onItemClick: (Todo) -> Unit,
     private val onLongPress: (Todo) -> Unit,
 ) : RecyclerView.Adapter<TodoAdapter.TodoViewHolder>() {
-
     var todoItems: List<Todo> = mutableListOf()
+        @SuppressLint("NotifyDataSetChanged")
         set(value) {
             field = value
             notifyDataSetChanged() // TODO: resolve

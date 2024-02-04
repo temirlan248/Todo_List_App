@@ -17,7 +17,7 @@
             android:name=".todo.TodoActivity"
             android:exported="false" />
         <activity
-            android:name=".todo_list.presentation.MainActivity"
+            android:name=".todoList.presentation.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
